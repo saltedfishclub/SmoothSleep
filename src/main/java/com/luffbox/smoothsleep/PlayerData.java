@@ -2,6 +2,7 @@ package com.luffbox.smoothsleep;
 
 import com.luffbox.smoothsleep.lib.*;
 import com.luffbox.smoothsleep.tasks.WakeParticlesTask;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -184,7 +185,7 @@ public class PlayerData implements Purgeable {
 								effects.add(new PotionEffect(pet,
 										potFx.getInt(key + ".duration"),
 										potFx.getInt(key + ".amplifier"),
-										true, particles, true
+										true, particles, Color.AQUA
 								));
 							}
 						}
