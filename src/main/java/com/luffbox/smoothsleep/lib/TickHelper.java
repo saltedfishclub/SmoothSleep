@@ -1,6 +1,5 @@
 package com.luffbox.smoothsleep.lib;
 
-import org.bukkit.GameRule;
 import org.bukkit.World;
 
 public class TickHelper {
@@ -15,8 +14,7 @@ public class TickHelper {
 		this.w = world;
 		this.ws = settings;
 		this.options = options;
-		Integer rts = world.getGameRuleValue(GameRule.RANDOM_TICK_SPEED);
-		if (rts != null) { randTickSpeed = rts; }
+		randTickSpeed = Integer.parseInt(world.getGameRuleValue("randomTickSpeed"));
 	}
 
 	public void tick(int ticks) {
@@ -24,12 +22,12 @@ public class TickHelper {
 		if (options.weather) { w.setWeatherDuration(w.getWeatherDuration() - ticks); }
 		if (options.randomTick) {
 			int rts = Math.min(randTickSpeed * ticks, ws.getInt(ConfigHelper.WorldSettingKey.MAX_RAND_TICK));
-			w.setGameRule(GameRule.RANDOM_TICK_SPEED, rts);
+			w.setGameRuleValue("randomTickSpeed", String.valueOf(rts));
 		}
 	}
 
 	public void reset() {
-		w.setGameRule(GameRule.RANDOM_TICK_SPEED, randTickSpeed);
+		w.setGameRuleValue("randomTickSpeed", String.valueOf(randTickSpeed));
 	}
 
 }
